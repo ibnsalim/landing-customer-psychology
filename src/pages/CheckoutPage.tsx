@@ -243,7 +243,7 @@ export default function CheckoutPage() {
             />
             {errors.txnId && <p className="mt-1 text-sm text-destructive">{errors.txnId}</p>}
             {duplicateWarn && (
-              <p className="mt-1 text-sm text-amber-400">
+              <p className="mt-1 text-sm text-warning">
                 ⚠️ এই Transaction ID আগে ব্যবহার করা হয়েছে
               </p>
             )}
