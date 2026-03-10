@@ -342,7 +342,7 @@ export default function CheckoutPage() {
             initial={{ x: 300, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 300, opacity: 0 }}
-            className="fixed right-4 top-4 z-50 w-full max-w-xs rounded-xl border border-destructive/50 bg-[hsl(0_30%_14%)] p-4"
+            className="fixed right-4 top-4 z-50 w-full max-w-xs rounded-xl border border-destructive/50 bg-error-card p-4"
           >
             <button
               onClick={() => setFailureMsg(null)}
