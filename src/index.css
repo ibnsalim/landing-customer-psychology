@@ -82,4 +82,16 @@
     background-color: hsl(230 20% 13%);
     border-radius: 0.75rem;
   }
+  
+  .bg-success-card {
+    background-color: hsl(145 30% 14%);
+  }
+  
+  .bg-error-card {
+    background-color: hsl(0 30% 14%);
+  }
+  
+  .text-warning {
+    color: hsl(45 93% 58%);
+  }
 }
