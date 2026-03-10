@@ -307,7 +307,7 @@ export default function CheckoutPage() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", damping: 20 }}
-              className="w-full max-w-sm rounded-2xl border border-success/50 bg-[hsl(145_30%_14%)] p-8 text-center"
+              className="w-full max-w-sm rounded-2xl border border-success/50 bg-success-card p-8 text-center"
             >
               <CheckCircle className="mx-auto mb-4 h-12 w-12 text-success" />
               <p className="mb-4 text-lg font-bold text-foreground">
