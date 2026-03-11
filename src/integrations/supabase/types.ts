@@ -14,6 +14,80 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_logs: {
+        Row: {
+          action: string
+          admin_id: string | null
+          created_at: string
+          entity_id: string | null
+          entity_type: string | null
+          id: string
+          metadata: Json | null
+        }
+        Insert: {
+          action: string
+          admin_id?: string | null
+          created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          metadata?: Json | null
+        }
+        Update: {
+          action?: string
+          admin_id?: string | null
+          created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          metadata?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_logs_admin_id_fkey"
+            columns: ["admin_id"]
+            isOneToOne: false
+            referencedRelation: "admin_users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      admin_users: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          is_active: boolean
+          last_login_at: string | null
+          role: Database["public"]["Enums"]["admin_role_enum"]
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          is_active?: boolean
+          last_login_at?: string | null
+          role?: Database["public"]["Enums"]["admin_role_enum"]
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          is_active?: boolean
+          last_login_at?: string | null
+          role?: Database["public"]["Enums"]["admin_role_enum"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           body_html: string
@@ -79,12 +153,15 @@ export type Database = {
       }
       orders: {
         Row: {
+          admin_notes: string | null
           amount: number
           created_at: string
           customer_id: string
+          ebook_sent_at: string | null
           email: string
           full_name: string
           id: string
+          is_manual: boolean
           order_number: string
           payment_method: string
           phone: string
@@ -93,12 +170,15 @@ export type Database = {
           transaction_id: string
         }
         Insert: {
+          admin_notes?: string | null
           amount?: number
           created_at?: string
           customer_id: string
+          ebook_sent_at?: string | null
           email: string
           full_name: string
           id?: string
+          is_manual?: boolean
           order_number: string
           payment_method: string
           phone: string
@@ -107,12 +187,15 @@ export type Database = {
           transaction_id: string
         }
         Update: {
+          admin_notes?: string | null
           amount?: number
           created_at?: string
           customer_id?: string
+          ebook_sent_at?: string | null
           email?: string
           full_name?: string
           id?: string
+          is_manual?: boolean
           order_number?: string
           payment_method?: string
           phone?: string
@@ -183,6 +266,13 @@ export type Database = {
             referencedRelation: "orders"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "payments_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "vw_recent_orders"
+            referencedColumns: ["id"]
+          },
         ]
       }
       products: {
@@ -215,15 +305,95 @@ export type Database = {
         }
         Relationships: []
       }
+      site_settings: {
+        Row: {
+          id: string
+          key: string
+          updated_at: string
+          value: string | null
+        }
+        Insert: {
+          id?: string
+          key: string
+          updated_at?: string
+          value?: string | null
+        }
+        Update: {
+          id?: string
+          key?: string
+          updated_at?: string
+          value?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
-      [_ in never]: never
+      vw_daily_order_summary: {
+        Row: {
+          confirmed_orders: number | null
+          date: string | null
+          pending_orders: number | null
+          revenue: number | null
+        }
+        Relationships: []
+      }
+      vw_dashboard_summary: {
+        Row: {
+          confirmed_orders: number | null
+          pending_orders: number | null
+          this_month_orders: number | null
+          today_orders: number | null
+          total_orders: number | null
+          total_revenue: number | null
+        }
+        Relationships: []
+      }
+      vw_monthly_order_summary: {
+        Row: {
+          confirmed_orders: number | null
+          month_start: string | null
+          pending_orders: number | null
+          revenue: number | null
+        }
+        Relationships: []
+      }
+      vw_payment_method_breakdown: {
+        Row: {
+          order_count: number | null
+          payment_method: string | null
+          total_revenue: number | null
+        }
+        Relationships: []
+      }
+      vw_recent_orders: {
+        Row: {
+          amount: number | null
+          created_at: string | null
+          email: string | null
+          full_name: string | null
+          id: string | null
+          order_number: string | null
+          payment_method: string | null
+          phone: string | null
+          status: string | null
+        }
+        Relationships: []
+      }
+      vw_weekly_order_summary: {
+        Row: {
+          confirmed_orders: number | null
+          pending_orders: number | null
+          revenue: number | null
+          week_start: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      admin_role_enum: "super_admin" | "order_manager" | "email_manager"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -350,6 +520,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      admin_role_enum: ["super_admin", "order_manager", "email_manager"],
+    },
   },
 } as const
