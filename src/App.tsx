@@ -37,9 +37,9 @@ const App = () => (
           <Route path="/admin" element={<AdminAuthProvider><AdminLayout /></AdminAuthProvider>}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="orders" element={<OrdersPage />} />
-            <Route path="products" element={<PlaceholderPage />} />
-            <Route path="customers" element={<PlaceholderPage />} />
-            <Route path="payments" element={<PlaceholderPage />} />
+            <Route path="products" element={<ProductsPage />} />
+            <Route path="customers" element={<CustomersPage />} />
+            <Route path="payments" element={<PaymentsPage />} />
             <Route path="email" element={<PlaceholderPage />} />
             <Route path="blog" element={<PlaceholderPage />} />
             <Route path="settings" element={<PlaceholderPage />} />
