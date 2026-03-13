@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 import AdminSidebar from "./AdminSidebar";
@@ -8,6 +8,14 @@ export default function AdminLayout() {
   const { user, adminUser, loading } = useAdminAuth();
   const [sidebarCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMd, setIsMd] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMd(window.innerWidth >= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   if (loading) {
     return (
@@ -30,15 +38,10 @@ export default function AdminLayout() {
         mobileOpen={mobileOpen}
         onCloseMobile={() => setMobileOpen(false)}
       />
-      <AdminNavbar onMenuClick={() => setMobileOpen(true)} sidebarWidth={sidebarWidth} />
-
-      <main
-        className="pt-[60px] transition-all duration-300 hidden md:block"
-        style={{ marginLeft: sidebarWidth }}
-      />
+      <AdminNavbar onMenuClick={() => setMobileOpen(true)} sidebarWidth={isMd ? sidebarWidth : 0} />
       <div
         className="pt-[60px] min-h-screen transition-all duration-300"
-        style={{ marginLeft: typeof window !== "undefined" && window.innerWidth >= 768 ? sidebarWidth : 0 }}
+        style={{ marginLeft: isMd ? sidebarWidth : 0 }}
       >
         <div className="p-4 md:p-6">
           <Outlet />
