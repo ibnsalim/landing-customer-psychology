@@ -13,6 +13,9 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import OrdersPage from "./pages/admin/OrdersPage";
+import ProductsPage from "./pages/admin/ProductsPage";
+import CustomersPage from "./pages/admin/CustomersPage";
+import PaymentsPage from "./pages/admin/PaymentsPage";
 import PlaceholderPage from "./pages/admin/PlaceholderPage";
 
 const queryClient = new QueryClient();
