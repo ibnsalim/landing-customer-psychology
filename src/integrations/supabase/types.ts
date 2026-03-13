@@ -212,6 +212,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "orders_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "vw_customers_enriched"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "orders_product_id_fkey"
             columns: ["product_id"]
             isOneToOne: false
@@ -257,6 +264,13 @@ export type Database = {
             columns: ["customer_id"]
             isOneToOne: false
             referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payments_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "vw_customers_enriched"
             referencedColumns: ["id"]
           },
           {
@@ -328,6 +342,19 @@ export type Database = {
       }
     }
     Views: {
+      vw_customers_enriched: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          full_name: string | null
+          id: string | null
+          last_purchase: string | null
+          phone: string | null
+          total_orders: number | null
+          total_spent: number | null
+        }
+        Relationships: []
+      }
       vw_daily_order_summary: {
         Row: {
           confirmed_orders: number | null
