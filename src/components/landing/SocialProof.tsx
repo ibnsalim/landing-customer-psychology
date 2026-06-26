@@ -24,7 +24,7 @@ const testimonials = [
 const badges = [
   "🔒 নিরাপদ পেমেন্ট",
   "💳 Bkash · Nagad · Rocket",
-  "📚 ১,২০০+ পাঠক",
+  "📚 ৫০০+ পাঠক",
   "🛡 ৭ দিনের গ্যারান্টি",
 ];
 
@@ -62,7 +62,7 @@ export default function SocialProof() {
       <div className="container max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-primary font-bold font-inter" style={{ fontSize: "3rem" }}>
-            <CountUp target={1200} />+
+            <CountUp target={500} />+
           </p>
           <p className="text-foreground text-xl">
             ছোট ব্যবসার মালিক

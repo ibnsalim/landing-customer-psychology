@@ -45,7 +45,7 @@ export default function HeroSection() {
           </div>
 
           <p className="text-sm text-success">
-            ✔ ৭ দিনের মানি-ব্যাক গ্যারান্টি &nbsp; ✔ ১,২০০+ পাঠক
+            ✔ ৭ দিনের মানি-ব্যাক গ্যারান্টি &nbsp; ✔ ৫০০+ পাঠক
           </p>
         </div>
 
